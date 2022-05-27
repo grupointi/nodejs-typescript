@@ -52,7 +52,6 @@ export const postUsuario = async( req: Request , res: Response ) => {
 export const putUsuario = async( req: Request , res: Response ) => {
     const { id }   = req.params;
     const { body } = req;
-
     try {
         const usuario = await Usuario.findByPk( id );
         if ( !usuario ) {
