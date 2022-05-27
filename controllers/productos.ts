@@ -7,8 +7,6 @@ import Producto from '../models/producto';
     res.json({productos});
 };
 
-
-
 export const postProducto = async( req: Request , res: Response ) => {
   const { body } = req;
     try {
