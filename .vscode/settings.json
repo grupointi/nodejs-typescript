@@ -1,0 +1,15 @@
+{
+    "files.trimTrailingWhitespace": true,
+    "files.associations": {
+      "*.json": "jsonc" /* Allow comments in all json files */
+    },
+
+    /* The next lines allows running tests in VSCode, using "Jasmine Test Explorer" VSCode Extension */
+    "jasmineExplorer.config": "spec/support/jasmine.json",
+    "jasmineExplorer.env": { "NODE_ENV": "test", "TS_NODE_FILES": "true" },
+    "jasmineExplorer.nodeArgv": ["-r", "ts-node/register"],
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.bracketPairColorization.enabled": true
+  }
