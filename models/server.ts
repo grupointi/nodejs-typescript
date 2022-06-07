@@ -1,13 +1,11 @@
 import express, { Application } from 'express';
 import userRoutes from '../routes/usuario';
 import productRoutes from '../routes/producto';
-
+import 'dotenv/config'
 import cors from 'cors';
-
 import db from '../db/connection';
 
 class Server {
-
     private app: Application;
     private port: string;
     private apiPaths = {
@@ -38,13 +36,10 @@ class Server {
     }
 
     middlewares() {
-
         // CORS solicitud desde distintos origenes, peticiones cross domain
         this.app.use( cors() );
-
         // Lectura del body, parsea el body de las request
         this.app.use( express.json() );
-
         // Servir sitio o contenido front-end
         this.app.use( express.static('public') );
     }
@@ -59,7 +54,6 @@ class Server {
             console.log('Servidor corriendo en puerto ' + this.port );
         })
     }
-
 }
 
 export default Server;

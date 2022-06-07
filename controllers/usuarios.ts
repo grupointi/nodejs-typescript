@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { json } from 'sequelize/types';
 import Usuario from '../models/usuario';
+import bcrypt from 'bcryptjs';
+import { getToken } from '../utils/utils';
 
  export const getUsuarios = async( req: Request , res: Response ) => {
     const usuarios = await Usuario.findAll();
@@ -33,9 +35,17 @@ export const postUsuario = async( req: Request , res: Response ) => {
             });
         }
 
+    const salt = await bcrypt.genSalt(10);
+    body.password =  await bcrypt.hash(body.password,salt)
+
     const usuario = Usuario.build(body);
     await usuario.save();
-    res.json( usuario );
+
+    const token = getToken(usuario['id']);
+
+    res.json({usuario,
+              token
+    });
 
     } catch (err) {
         if (err instanceof Error) {
