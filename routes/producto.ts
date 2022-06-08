@@ -5,6 +5,6 @@ import { protect } from '../middleware/auth';
 const router = Router();
 
 router.get('/', protect , getProductos);
-router.post('/',      postProducto );
+router.post('/', protect , postProducto );
 
 export default router;

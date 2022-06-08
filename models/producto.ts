@@ -7,7 +7,10 @@ const Producto = db.define('Producto', {
     },
     descripcion: {
         type: DataTypes.STRING
-    }
+    },
+    idUsuario: {
+      type: DataTypes.MEDIUMINT
+  }
 });
 
 export default Producto;
