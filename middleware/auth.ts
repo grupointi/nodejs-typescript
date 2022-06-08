@@ -8,9 +8,9 @@ import Usuario from '../models/usuario';
   }
 
  if(!token){
-  res.status(500).json({
+  return res.status(500).json({
     msg: 'No tiene acceso a esta ruta'
-})
+  })
  }
 
 try {
@@ -19,8 +19,6 @@ try {
   req['user'] = await Usuario.findByPk(decode['id']);
   next();
 } catch (error) {
-  res.status(500).json({
-    msg: 'No tiene acceso a esta ruta'
-})
+  return res.send("Token Invalido")
 }
 }
