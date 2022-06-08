@@ -6,7 +6,8 @@
     "jsRules": {},
     "rules": {
         "no-console": [true, "error"],
-        "no-consecutive-blank-lines": true
+        "no-consecutive-blank-lines": true,
+        "no-string-literal": false
     },
     "rulesDirectory": []
 }

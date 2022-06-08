@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { json } from 'sequelize/types';
 import Usuario from '../models/usuario';
 import bcrypt from 'bcryptjs';
 import { getToken } from '../utils/utils';
@@ -22,7 +21,7 @@ export const getUsuario = async( req: Request , res: Response ) => {
 }
 
 export const postUsuario = async( req: Request , res: Response ) => {
-    const { body } = req;
+  const { body } = req;
     try {
          const existeEmail = await Usuario.findOne({
             where: {
@@ -44,7 +43,7 @@ export const postUsuario = async( req: Request , res: Response ) => {
     const token = getToken(usuario[index]);
     // enviar json con usuario y token
     res.status(200).json({usuario,
-              token
+                          token
     });
     } catch (err) {
         if (err instanceof Error) {
@@ -105,6 +104,7 @@ export const putUsuario = async( req: Request , res: Response ) => {
             });
         }
 
+       if(body.email){
         const existeEmail = await Usuario.findOne({
             where: {
                 email: body.email
@@ -116,7 +116,7 @@ export const putUsuario = async( req: Request , res: Response ) => {
                 msg: 'Ya existe un usuario con el email ' + body.email
             });
         }
-
+      }
         await usuario.update( body );
         res.json( usuario );
 
