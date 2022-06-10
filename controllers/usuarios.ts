@@ -5,16 +5,16 @@ import { getToken } from '../utils/utils';
 
 export const getUsuarios = async( req: Request , res: Response ) => {
     const usuarios = await Usuario.findAll();
-    res.json({usuarios});
+    return res.json({usuarios});
 };
 
 export const getUsuario = async( req: Request , res: Response ) => {
     const { id } = req.params;
     const usuario = await Usuario.findByPk( id );
     if( usuario ) {
-        res.json(usuario);
+        return res.json(usuario);
     } else {
-        res.status(404).json({
+        return res.status(404).json({
             msg: `No existe un usuario con el id ${ id }`
         });
     }
@@ -42,7 +42,7 @@ export const postUsuario = async( req: Request , res: Response ) => {
     const index = 'id';
     const token = getToken(usuario[index]);
     // enviar json con usuario y token
-    res.status(200).json({usuario,
+    return res.status(200).json({usuario,
                           token
     });
     } catch (err) {
@@ -51,7 +51,7 @@ export const postUsuario = async( req: Request , res: Response ) => {
           } else {
             console.log('Unexpected error', err);
           }
-         res.status(500).json({
+        return res.status(500).json({
             msg: 'Hable con el administrador, error inesperado'
         })
     }
@@ -89,7 +89,7 @@ if(!isMatch){
 }else{
   const index = 'id';
   const token = getToken(usuario[index]);
-  res.status(200).json({token});
+  return res.status(200).json({token});
 }
 }
 
@@ -118,7 +118,7 @@ export const putUsuario = async( req: Request , res: Response ) => {
         }
       }
         await usuario.update( body );
-        res.json( usuario );
+        return res.json( usuario );
 
     } catch (err) {
         if (err instanceof Error) {
@@ -126,7 +126,7 @@ export const putUsuario = async( req: Request , res: Response ) => {
           } else {
             console.log('Unexpected error', err);
          }
-        res.status(500).json({
+        return res.status(500).json({
             msg: 'Hable con el administrador'
         })
     }
@@ -134,6 +134,7 @@ export const putUsuario = async( req: Request , res: Response ) => {
 
 export const deleteUsuario = async( req: Request , res: Response ) => {
     const { id } = req.params;
+
     const usuario = await Usuario.findByPk( id );
 
     if ( !usuario ) {
@@ -147,5 +148,5 @@ export const deleteUsuario = async( req: Request , res: Response ) => {
    // borrado fisico
    await usuario.destroy();
 
-    res.json(usuario);
+    return res.json(usuario);
 }

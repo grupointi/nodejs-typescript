@@ -15,6 +15,10 @@ router.post('/',[
 ], postUsuario );
 router.put('/:id',    putUsuario );
 router.delete('/:id', deleteUsuario );
-router.post('/login', loginUsuario );
+router.post('/login' , [
+  check('password','El parametro password no debe ser vacio ').notEmpty(),
+  check('email','El parametro email no debe ser vacio y debe tener formato correcto').isEmail(),
+  validarCampos
+], loginUsuario );
 
 export default router;
