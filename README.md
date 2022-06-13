@@ -1,10 +1,36 @@
-# nodejs-typescript
+# NODE JS TYPESCRIPT BOILERPLATE
+
+# Run app
+Run the app in :
+Production mode :  ```npm start ```
+Development mode : ```npm run dev ```
+
+# Express library (Endpoints)
+
+# ESLint
+
+
+# Jasmine (UnitTest)
+
+
+# TypeScript
+
+
+# JWT Authentication
+
+
+# Docker
+
+
+# GIT
+
+
+
 
 # Docker
 docker build . -t  dduran/ts-rest-server   | Building your image
-docker run -p 49160:8000 -d dduran/ts-rest-server  | Run the image
+docker run -e DB_HOST=host.docker.internal -p 49160:8000 -d dduran/ts-rest-server  | Run the image
 docker ps
 docker logs <container id>
-
-More at https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
-https://www.howtogeek.com/devops/how-to-connect-to-localhost-within-a-docker-container/
+docker container ls
+docker rm -f <container id>
